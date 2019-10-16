@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -118,4 +119,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATICFILE_DIRS = [
+os.path.join(BASE_DIR, 'static'),
+'/wingmate/static'
+]
+
+STATIC_ROOT = '/home/vagrant/wingmaterepo/Wingmate/web_app/mvp/wingmate/static'
 STATIC_URL = '/static/'

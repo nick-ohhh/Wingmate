@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,17 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link href="styles/style.css" rel="stylesheet">
+
+
+
+	{% load static %}
+	<link href="{% static 'wingmate/main.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'wingmate/a.css' %}" rel="stylesheet" type="text/css">
+
+
+
 	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+
 </head>
 <body>
 
@@ -107,7 +117,7 @@
 		<div class="card">
 			<img class="card-img-top" src="img/placeholder.png">
 			<div class="card-body">
-				<h4 class="card-title">Jeremy Antonio</h4>
+				<h4 class="card-title" id="hi">Jeremy Antonio</h4>
 				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				<a href="https://github.com/jembantonio" class="btn btn-outline-secondary">Github</a>
 				<a href="https://www.linkedin.com/in/jeremyantonio/" class="btn btn-outline-secondary">Linkedin</a>
@@ -163,7 +173,7 @@
 <div class="row text-center">
 	<div class="col-12">
 		<hr class="light">
-		<p>wingmates.best@gmail.com</p>
+		<p id="hi">wingmates.best@gmail.com</p>
 		<p>San Francisco, California</p>
 <div id="me" style="border: 1px solid red;">hello</div>
 	</div>
