@@ -11,8 +11,212 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
+	<script>
+$(document).ready(function() {
+  const context = {};
+  $("button").click(function() {
+    var location = $('#exampleInputLocation').val();
+    $(".display-2").text(location);
+  });
+
+$("a[href^='#']").click(function(e) {
+  e.preventDefault();
+		
+  var position = 
+$($(this).attr("href")).offset().top;
+
+  $("body, html").animate({
+    scrollTop: position
+  } 5000 );
+});
+});
+	</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+html, body {
+	  height: 100%;
+		    width: 100%;
+			      font-family: 'Poppins', sans-serif;
+				        color: #222;
+}
+	.navbar {
+		  padding: .8rem;
+	}
+
+	.navbar-nav li {
+		  padding-right: 20px;
+	}
+
+	.nav-link {
+		  font-size: 1.1em !important;
+	}
+
+	.carousel-inner img {
+		  width: 100%;
+			    height: 100%;
+	}
+
+	.carousel-caption {
+		  position: absolute;
+			    top: 50%;
+				      transform: translateY(-50%);
+	}
+
+	.carousel-caption h1 {
+		  font-size: 500%;
+			    text-shadow: 1px 1px 10px #000;
+	}
+
+	.carousel-caption h3 {
+		  font-size: 200%;
+			    font-weight: 500;
+				      text-shadow: 1px 1px 10px #000;
+	}
+
+	.form-location {
+		  padding: 1em;
+	}
+
+	.btn-primary {
+		  background-color: #6648b1;
+			    border: 1px solid #563d7c;
+	}
+
+	.social a {
+		  font-sizeem;
+		    padding: 3em;
+	}
+
+	.fa-twitter {
+		  color: #00aced;
+	}
+	.fa-twitter:hover {
+		  color: #d5d5d5;
+	}
 
 
+	hr.light {
+		  border-top: 1px solid #d5d5d5;
+			    width: 75%
+	}
+
+
+	/*---Media Queries --*/
+	@media (m-width: 992px) {
+		  .social a {
+			      font-size: 4em;
+				          padding: 2rem;
+						    }
+		    }
+
+	@media (max-width: 768px) {
+		  .carousel-caption {
+			      top: 45%;
+				        }
+
+		    .carousel-caption h1 {
+			        font-size: 350%;
+					  }
+
+		      .carousel-caption h3 {
+			          font-size: 140%;
+					      font-weight: 400;
+						          padding-bottom: .2rem;
+								    }
+
+		        .carousel-caption .btn {
+				    font-size: 95%;
+					        padding: 8px 14px;
+							  }
+	}
+
+	@media (max-width: 576px) {
+		  .carousel-caption {
+			      top: 40%;
+				        }
+
+		    .carousel-caption h1 {
+			    nt-size: 250%;
+				      }
+
+		      .carousel-caption h3 {
+			          font-size: 110%;
+					    }
+
+		        .carousel-caption .btn {
+				    font-size: 90%;
+					        padding: 4px 8px;
+							  }
+	}
+
+
+	/*---Firefox Bug Fix --*/
+	.carousel-item {
+		  transition: -webkit-transform 0.5s ease;
+			    transition: transform 0.5s ease;
+				      transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+					        -webkit-backface-visibility: visible;
+							  backface-visibility: visible;
+	}
+	/*--- Fixed Background Image --*/
+	figure {
+		  position: relative;
+			    width: 100%;
+				      height: 60%;
+					        margin: 0!important;
+	}
+	.fixed-wrap {
+		  clip: rect(0, auto, auto, 0);
+			    position: absolute;
+				      top: 0;
+					        left: 0;
+							  width: 100%;
+								    height: 100%;
+	}
+	#fixed {
+		  background-image: url('img/mac.png');
+			    position: fixed;
+				      display: block;
+					        top: 0;
+							  left: 0;
+								    width: 100%;
+									      height: 100%;
+										        background-size: cover;
+												  background-position: center center;
+													    -webkit-transform: translateZ(0);
+														              transform: translateZ(0);
+																        will-change: transform;
+	}
+	/*--- Bootstrap Padding Fix --*/
+	[class*="col-"] {
+		    padding: 1rem;
+	}
+
+
+
+
+
+	/*
+	   Extra small (xs) devices (portrait phones, less than 576px)
+	   No media query since this is the default in Bootstrap
+
+	   Small (sm) devices (landscape phones, 576px and up)
+   @media (min-width: 576px) { ... }
+
+   Medium (md) devices (tablets, 768px and up)
+   @media (min-width: 768px) { ... }
+
+   Large (lg) devices (desktops, 992px and up)
+   @media (min-width: 992px) { ... }
+
+   Extra (xl) large devices (large desktops, 1200px and up)
+   @media (min-width: 1200px) { ... }
+   */
+
+
+</style>
 	{% load static %}
 	<link href="{% static 'wingmate/main.css' %}" rel="stylesheet" type="text/css">
 	<link href="{% static 'wingmate/a.css' %}" rel="stylesheet" type="text/css">
@@ -34,13 +238,13 @@
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="#">Home</a>
+				<a class="nav-link" href="#home">Home</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">About</a>
+				<a class="nav-link" href="#about">About</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Team</a>
+				<a class="nav-link" href="#team">Team</a>
 			</li>
 		</ul>
 	</div>
@@ -86,7 +290,7 @@
 <div class="container-fluid padding">
 	<div class="row padding">
 		<div class="col-md-12 col-lg-6">
-			<h2>About Wingmates</h2>
+			<h2 id="about">About Wingmates</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>	
 		</div>
 		<div class="col-md-12 col-lg-6">
@@ -102,7 +306,7 @@
 <div class="container-fluid padding">
 <div class="row welcome text-center">
 	<div class="col-12">
-		<h1 class="display-4">Meet the Team</h1>
+		<h1 class="display-4" id="team">Meet the Team</h1>
 	</div>
 	<hr>
 </div>
@@ -175,7 +379,6 @@
 		<hr class="light">
 		<p id="hi">wingmates.best@gmail.com</p>
 		<p>San Francisco, California</p>
-<div id="me" style="border: 1px solid red;">hello</div>
 	</div>
 </div>
 </div>
