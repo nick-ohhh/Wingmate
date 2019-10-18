@@ -13,22 +13,21 @@
 
 	<script>
 $(document).ready(function() {
+  $('a[href*="#"]').on('click', function(e) {
+    e.preventDefault()
+    $('html, body').animate(
+      {
+        scrollTop: $($(this).attr('href')).offset().top,
+      },
+      400,
+      'linear'
+    )
+  })
   const context = {};
   $("button").click(function() {
     var location = $('#exampleInputLocation').val();
     $(".display-2").text(location);
   });
-
-$("a[href^='#']").click(function(e) {
-  e.preventDefault();
-		
-  var position = 
-$($(this).attr("href")).offset().top;
-
-  $("body, html").animate({
-    scrollTop: position
-  } 5000 );
-});
 });
 	</script>
 
@@ -226,7 +225,7 @@ html, body {
 	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
 
 </head>
-<body>
+<body id="home">
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 <div class="container-fluid">
