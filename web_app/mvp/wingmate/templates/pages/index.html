@@ -26,7 +26,7 @@ $(document).ready(function() {
   const context = {};
   $("button").click(function() {
     var location = $('#exampleInputLocation').val();
-    $(".display-2").text(location);
+    $('DIV#results').removeClass('no_display');
   });
 });
 	</script>
@@ -34,14 +34,14 @@ $(document).ready(function() {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-html, body {
+	html, body {
 	  height: 100%;
-		    width: 100%;
-			      font-family: 'Poppins', sans-serif;
-				        color: #222;
-}
+	  width: 100%;
+	  font-family: 'Poppins', sans-serif;
+	  color: #222;
+	}
 	.navbar {
-		  padding: .8rem;
+		  padding: .8rem .8rem .4rem .8rem;
 	}
 
 	.navbar-nav li {
@@ -101,53 +101,71 @@ html, body {
 			    width: 75%
 	}
 
+	#w_logo {
+		width: auto;
+		height: 8rem;
+	}
+
+	#logo_title_container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.no_display {
+	  display: none;
+	}
 
 	/*---Media Queries --*/
 	@media (m-width: 992px) {
-		  .social a {
-			      font-size: 4em;
-				          padding: 2rem;
-						    }
-		    }
+	  #w_logo {
+		  height: 9rem;
+	  }
+	  #logo_title_container {
+	    font-size: 9rem;
+	  }
+	  .social a {
+	     font-size: 4em;
+	     padding: 2rem;
+	   }
+	}
 
 	@media (max-width: 768px) {
-		  .carousel-caption {
-			      top: 45%;
-				        }
-
-		    .carousel-caption h1 {
-			        font-size: 350%;
-					  }
-
-		      .carousel-caption h3 {
-			          font-size: 140%;
-					      font-weight: 400;
-						          padding-bottom: .2rem;
-								    }
-
-		        .carousel-caption .btn {
-				    font-size: 95%;
-					        padding: 8px 14px;
-							  }
+	  #w_logo {
+	  }
+	  .carousel-caption {
+	    top: 45%;
+	  }
+          .carousel-caption h1 {
+            font-size: 350%;
+	  }
+          .carousel-caption h3 {
+            font-size: 140%;
+            font-weight: 400;
+            padding-bottom: .2rem;
+          }
+          .carousel-caption .btn {
+	    font-size: 95%;
+	    padding: 8px 14px;
+	  }
 	}
 
 	@media (max-width: 576px) {
-		  .carousel-caption {
-			      top: 40%;
-				        }
-
-		    .carousel-caption h1 {
-			    nt-size: 250%;
-				      }
-
-		      .carousel-caption h3 {
-			          font-size: 110%;
-					    }
-
-		        .carousel-caption .btn {
-				    font-size: 90%;
-					        padding: 4px 8px;
-							  }
+	  #w_logo {
+	    height: 5rem;
+	  }
+	  .carousel-caption {
+	    top: 40%;
+	  }
+          .carousel-caption h1 {
+            nt-size: 250%;
+	  }
+          .carousel-caption h3 {
+            font-size: 110%;
+          }
+          .carousel-caption .btn {
+	    font-size: 90%;
+            padding: 4px 8px;
+          }
 	}
 
 
@@ -225,11 +243,11 @@ html, body {
 	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
 
 </head>
-<body id="home">
+<body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+	<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 <div class="container-fluid">
-	<a class="navbar-brand" href="#"><img src="https://i.ibb.co/m9VJDb6/logo2.png" style="width: auto; height: 10vh;"></a>
+	<!--	<a class="navbar-brand" href="#home"><img src="https://i.ibb.co/m9VJDb6/logo2.png" style="width: auto; height: 10vh;"></a>-->
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 	data-target="#navbarResponsive">
 		<span class="navbar-toggler-icon"></span>
@@ -237,7 +255,7 @@ html, body {
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="#home">Home</a>
+				<a class="nav-link" href="http://wingmate.best/">Home</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#about">About</a>
@@ -259,7 +277,12 @@ html, body {
 	<div class="carousel-item active">
 		<img src="https://preppywallpapers.com/wp-content/uploads/2018/12/header.jpg" style="height: 95vh;">
 		<div class="carousel-caption">
-			<h1 class="display-2">Wingmates</h1>
+			<h1 class="display-2" style="color: rgb(246, 100, 1);">
+			  <div id="logo_title_container">
+			    <img src="https://i.ibb.co/TwNtHY7/imageedit-1-9591547634.png" id="w_logo">
+			    ingmates
+			  </div>
+			</h1>
 			<h3>You've found your match, let us handle the rest</h3>
 			<form>
 					<div class="form-location">
@@ -272,15 +295,14 @@ html, body {
 </div>
 </div>
 
-
 <!--- Results -->
-<div class="container-fluid">
+<div class="container-fluid no_display" id="results">
 <div class="row jumbotron">
 	<div class="col-md-12 col-lg-6">
 		<img src="https://pp.userapi.com/c850232/v850232200/dad3e/Lm9jrkrSrf0.jpg" class="img-fluid">
 	</div>
 	<div class="col-md-12 col-lg-6">
-		<p class="lead"> This is where results will show</p>
+		<p class="lead"> {{ location }}</p>
 	</div>
 </div>
 </div>
