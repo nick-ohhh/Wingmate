@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# script restarts tmux/gunicorn to refresh webpage
+tmux a
+sleep 2
+PID=$!
+sleep 2
+kill $PID
+tmux new-session -d 'gunicorn --bind 0.0.0.0:8000 wingmate.wsgi:application'

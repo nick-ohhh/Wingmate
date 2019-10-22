@@ -29,9 +29,11 @@ $(document).ready(function() {
         alert("You pressed enter!\nWe're not sure how to handle that yet :)");
       }
   });
-  $("button").click(function() {
+  $("#generate").click(function() {
     var loc = $('#exampleInputLocation').val();
-    window.location.replace("http://wingmate.best/search/" + loc);
+    var dat = $('#date_input').val();
+    var tim = $('#time_input').val();
+    window.location.replace("http://wingmate.best/search/" + loc + '/' + dat + '/' + tim);
     var display = "True";
     localStorage.setItem("display", display);
   });
@@ -95,7 +97,7 @@ $(document).ready(function() {
 	  flex-direction: column;
 	  align-items: center;
 	  justify-content: flex-start;
-	  transform: translateY(-20%);
+	  transform: translateY(-20vh);
 	}
 	  position: absolute;
 	  top: 40%;
@@ -113,6 +115,11 @@ $(document).ready(function() {
 
 	.form-location {
 		  padding: 1em;
+	}
+
+	#exampleInputLocation {
+	  width: 50rem;
+	  max-width: 70vw;
 	}
 
 	.btn-primary {
@@ -175,14 +182,16 @@ $(document).ready(function() {
 	  display: flex;
 	  flex-direction: column;
 	  align-items: center;
-	  max-width: 20vw;
+	  margin: 0px 9px;
 	}
 
 	#date_input {
           width: 10rem;
+	  color: #495057;
 	}
 	#time_input {
           width: 8rem;
+	  color: #495057;
 	}
 
 	[type="date"] {
@@ -197,6 +206,12 @@ $(document).ready(function() {
 
 	/*---Media Queries --*/
 	@media (m-width: 992px) {
+	  #date_input {
+            width: 10rem;
+  	  }
+	  #time_input {
+            width: 8rem;
+	  }
 	  #w_logo {
 		  height: 9rem;
 	  }
@@ -210,6 +225,12 @@ $(document).ready(function() {
 	}
 
 	@media (max-width: 768px) {
+	  #date_input {
+            width: 6rem;
+	  }
+	  #time_input {
+            width: 4rem;
+	  }
 	  #w_logo {
 	  }
 	  .carousel-caption {
@@ -379,7 +400,7 @@ $(document).ready(function() {
 					  </div>
 					</div>
 			</form>
-			<button type="button" class="btn btn-primary btn-lg">YOUR DATE</button>
+			<button type="button" class="btn btn-primary btn-lg" id="generate">YOUR DATE</button>
 		</div>
 	</div>
 </div>
@@ -393,8 +414,29 @@ $(document).ready(function() {
 	</div>
 	<div class="col-md-12 col-lg-6">
 		<p class="lead"> {{ name }}</p>
-		{{ rating }}
+		<p>
+		{% for star in stars %}
+		&#9733
+		{% endfor %}
+		{% for star in half_star %}
+		&#9734
+		{% endfor %}
+		</p>
+		<p>
 		{{ phone }}
+		</p>
+		<p>
+		{{ start }}
+		</p>
+		<p>
+		{{ stop }}
+		</p>
+		<p>
+		{{ price }}
+		</p>
+		{% for pic in photos %}
+		<img src="{{ pic }}"></img>
+		{% endfor %}
 
 	</div>
 </div>
