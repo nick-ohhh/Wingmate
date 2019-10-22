@@ -25,7 +25,7 @@ SECRET_KEY = 'umg(+s7p)@93kf-tf3+r6y_q%q0rm9y1mjr-ska83z6m2o*bv5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wingmate.best']
 
 
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
