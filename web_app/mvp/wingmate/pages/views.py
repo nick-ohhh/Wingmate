@@ -36,27 +36,24 @@ def create_context(response):
     response['stars'] = stars
     return response
     
-not_open = {}
+
 # user enters all fields and hits button
 def full_search(request, location, date, time):
     import requests
     PARAMETERS = {'limit': 50, 'radius': 8000, 'location': location}
     response = requests.get(url = search, params = PARAMETERS, headers = HEADERS).json()
     # delete not open business from response
-    for venue in not_open:
-        for business in response:
-            if venue['id'] == business['id']:
-                del business
     venue = highest_rated(response)
     url = 'https://api.yelp.com/v3/businesses/' + venue['id']
     response = requests.get(url = url, headers = HEADERS).json()
     response = create_context(response)
-    if int(time.split()[0]) >= int(response['start']) and int(time.split()[0]) <= (int(response['stop']) - 200):
-        not_open.clear()
+    time = time.replace(':', '')
+    if int(time) >= int(response['start']) and int(time) <= (int(response['stop']) - 200):
+        response['open'] = 'yes'
         return render(request, 'pages/index.html', context=response, content_type='string')
     else:
-        not_open[response['name']] = response
-        return full_search(request, location, date, time)
+        response['open'] = 'no'
+        return render(request, 'pages/index.html', context=response, content_type='string')
 
 
 # user searches with location only
