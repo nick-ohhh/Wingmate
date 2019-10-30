@@ -1,10 +1,10 @@
 from django.shortcuts import render
 import requests
+from pages.keys import yelp, maps
 
 
 search = "https://api.yelp.com/v3/businesses/search"
-auth_key = "N0Cc2WUBNk_eeKPj-PNdPC6Psm_YDGJ5mbUJLqRJjWS5Ir-g22GI0toSDs4Ie0ieW-ydIyMXSFEv9i58rant3jUHHrpCfXgvXiy5mwu9eSng0BKVrA_qEizwCHOmXXYx"
-HEADERS = {'Authorization': 'bearer {}'.format(auth_key)}
+HEADERS = {'Authorization': 'bearer {}'.format(yelp)}
 
 # Create your views here.
 def index(request):
@@ -17,16 +17,12 @@ def bad_search(request):
 
 # update response dictionary so needed fields are top-level
 def create_context(response):
-    response['start'] = response['hours'][0]['open'][0]['start']
-    response['stop'] = response['hours'][0]['open'][0]['end']
     if response['start'] == '0000':
         response['start'] = 'Open 24hrs'
     if response['stop'] == '0000':
         response['stop'] = ''
     if not 'price' in response:
         response['price'] = 'Free'
-    else:
-        response['price'] = 'PRICE: ' + response['price']
     rating = response['rating']
     stars = {}
     if rating % 1:
@@ -34,6 +30,36 @@ def create_context(response):
     for i in range(int(rating)):
         stars[i] = i
     response['stars'] = stars
+    try:
+        address = ''
+        # address is a list of lines in the address, like 123 abc street is 1 line, city name another, and so on
+        response['address'] = []
+        count = 0
+        for i in response['location']['display_address']:
+            response['address'].append(i)
+            address = i
+            if count == 0:
+                addr = i
+            count += 1
+        address = addr + ' ' + address
+                
+    except KeyError:
+        address = ''
+        response['address'] = ['Unknown']
+
+    alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+    count = 0
+    # remove characters like '&' from address that might mess up google maps url
+    for l in address:
+        if l not in alpha:
+            address.replace(l, '')
+        count += 1
+    # format venue name and address for google maps url
+    fvenue = response['name'].replace(' ', '+')
+    address = address.replace(' ', '+')
+    address = address.replace(',', '')
+    google_url = "https://www.google.com/maps/embed/v1/place?key=" + maps + "&q=" + fvenue + ',' + address
+    response['google_map'] = google_url
     return response
 
 def convert_user_dates(response, date, time):
@@ -49,6 +75,10 @@ def convert_user_dates(response, date, time):
 def is_open(venue, desired, date, time):
     from datetime import datetime, timedelta
     weekday = desired.weekday()
+    if not 'hours' in venue:
+        venue['start'] = 'Open 24hrs'
+        venue['stop'] = ''
+        return True
     biz_day = venue['hours'][0]['open'][weekday]
     biz_open_s = biz_day['start']
     biz_close_s = biz_day['end']
@@ -58,6 +88,8 @@ def is_open(venue, desired, date, time):
     biz_close_s = datetime.strptime(biz_close_s, "%H%M")
     biz_close_s = biz_close_s.strftime("%I:%M %p")
     # formatted like: HH:MM AM
+    venue['start'] = biz_open_s
+    venue['stop'] = biz_close_s
     if is_open_late(biz_open_s, biz_close_s, time):
         # format like: YYY-MM-DD HH:MM AM
         biz_open_s = date + ' ' + biz_open_s
@@ -119,7 +151,7 @@ def full_search(request, location, date, time):
 
 def randomize(l_biz):
     import random
-    a = random.randint(0, len(l_biz))
+    a = random.randint(0, len(l_biz) - 1)
     return l_biz[a]
 
 
