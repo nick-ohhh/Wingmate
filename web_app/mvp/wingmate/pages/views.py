@@ -36,49 +36,90 @@ def create_context(response):
     response['stars'] = stars
     return response
 
-not_open = {}
-# user enters all fields and hits button
+def convert_user_dates(response, date, time):
+    from datetime import datetime, timedelta
+    # convert user input date/time into datetime object
+    time = datetime.strptime(time, "%H:%M")
+    time = time.strftime("%I:%M %p")
+    desired = date + ' ' + time
+    desired = datetime.strptime(desired, '%Y-%m-%d %I:%M %p')
+    return response['businesses'], desired
+
+
+def is_open(venue, desired, date, time):
+    from datetime import datetime, timedelta
+    weekday = desired.weekday()
+    biz_day = venue['hours'][0]['open'][weekday]
+    biz_open_s = biz_day['start']
+    biz_close_s = biz_day['end']
+    # convert from 24 hour to 12 hur
+    biz_open_s = datetime.strptime(biz_open_s, "%H%M")
+    biz_open_s = biz_open_s.strftime("%I:%M %p")
+    biz_close_s = datetime.strptime(biz_close_s, "%H%M")
+    biz_close_s = biz_close_s.strftime("%I:%M %p")
+    # formatted like: HH:MM AM
+    if is_open_late(biz_open_s, biz_close_s, time):
+        # format like: YYY-MM-DD HH:MM AM
+        biz_open_s = date + ' ' + biz_open_s
+        biz_close_s = date + ' ' + biz_close_s 
+        # create datetime objects
+        biz_open = datetime.strptime(biz_open_s, "%Y-%m-%d %H:%M %p")
+        biz_close = datetime.strptime(biz_close_s, "%Y-%m-%d %H:%M %p")
+        # add 1 day to biz_close
+        biz_close = biz_close + timedelta(days=1)
+    # format like: YYY-MM-DD HH:MM AM
+    else:
+        biz_open_s = date + ' ' + biz_open_s
+        biz_close_s = date + ' ' + biz_close_s 
+        # converted into datetime objects
+        biz_open = datetime.strptime(biz_open_s, "%Y-%m-%d %I:%M %p")
+        biz_close = datetime.strptime(biz_close_s, "%Y-%m-%d %I:%M %p")
+    if desired > biz_open and desired < biz_close:
+        return True
+    return False
+
+
+
+def is_open_late(o, c, time):
+    hour = int(time.split(":")[0])
+    if hour > 9:
+        if 'AM' in c and 'PM' in o:
+            return True
+    o_h = int(o.split(':')[0])
+    c_h = int(c.split(':')[0])
+    if o_h > c_h:
+        return True
+    return False
+
+
+
 def full_search(request, location, date, time):
     import requests
-    PARAMETERS = {'limit': 50, 'radius': 8000, 'location': location}
-    response = requests.get(url = search, params = PARAMETERS, headers = HEADERS).json()
-    # delete not open business from response
-    for venue in not_open:
-        for business in response:
-            if venue['id'] == business['id']:
-                del business
-    venue = highest_rated(response)
-    url = 'https://api.yelp.com/v3/businesses/' + venue['id']
-    response = requests.get(url = url, headers = HEADERS).json()
-    response = create_context(response)
-    else:
-        response['open'] = 'no'
-        return render(request, 'pages/index.html', context=response, content_type='string')
-    if int(time.split()[0]) >= int(response['start']) and int(time.split()[0]) <= (int(response['stop']) - 200):
-        not_open.clear()
-        return render(request, 'pages/index.html', context=response, content_type='string')
-    else:
-        not_open[response['name']] = response
-        return full_search(request, location, date, time)
+    PARAMETERS = {'limit': 50, 'radius': 8000, 'location': location, 'sort_by': 'rating'}
+    search_response = requests.get(url = search, params = PARAMETERS, headers = HEADERS).json()
+    while(len(search_response['businesses']) > 0):
+        list_businesses, desired = convert_user_dates(search_response, date, time)
+        venue = randomize(list_businesses)
+        v_id = venue['id']
+        url = "http://api.yelp.com/v3/businesses/" + v_id
+        venue = requests.get(url = url, params = PARAMETERS, headers = HEADERS).json()
+        if is_open(venue, desired, date, time):
+            venue = create_context(venue)
+            return render(request, 'pages/index.html', context=venue, content_type='string')
+        else:
+            count = 0
+            for i in list_businesses:
+                if i['id'] == v_id:
+                    search_response['businesses'].pop(count)
+                count += 1
+    no_match = {'name': 'Nothing found.'}
+    return render(request, 'pages/index.html', context=no_match, content_type='string')
 
-# user searches with location only
-def location_search_only(request, location=None):
-    import requests
-    PARAMETERS = {'limit': 50, 'radius': 8000, 'location': location}
-    response = requests.get(url = search, params = PARAMETERS, headers = HEADERS).json()
-    context = highest_rated(response)
-    return render(request, 'pages/index.html', context, content_type='string')
 
-# find highest rated venue in dict of venues
-def highest_rated(response):
-    dict_business = []
-    highest = 3
-    chosen = 'No suitable venues were found'
-    tmp = {}
-    # tmp fix for a return value bug
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnfTkcfMsh1rtHVq2_CcJGCfz1oKZvD1E=&callback=initMap"
-    for business in response['businesses']:
-        if business['rating'] >= highest:
-            highest = business['rating']
-            tmp = business
-    return tmp
+
+def randomize(l_biz):
+    import random
+    a = random.randint(0, len(l_biz))
+    return l_biz[a]
+
+
