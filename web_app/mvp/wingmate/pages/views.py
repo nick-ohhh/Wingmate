@@ -30,11 +30,26 @@ def create_context(response):
     for i in range(int(rating)):
         stars[i] = i
     response['stars'] = stars
-    try:
-        address = ''
-        # address is a list of lines in the address, like 123 abc street is 1 line, city name another, and so on
-        response['address'] = []
-        count = 0
+    # address is a list of lines in the address, like 123 abc street is 1 line, city name another, and so on
+    if 'location' in response:
+        if 'display_address' in response['location']:
+            address = response['location']['display_address'][0]
+            faddress = response['location']['display_address'][0].replace(' ', '+')
+            response['address'] = address
+            if len(response['location']['display_address']) > 1:
+                for line in response['location']['display_address']:
+                    if ',' in line and line != address:
+                        address = address + ', ' + line
+                        response['address'] = address
+                        line = line.replace(',', '')
+                        faddress = faddress + ',' + line
+            else:
+                response['address'] = address
+        else:
+            response['address'] = ['Unknown']
+    else:
+        response['address'] = ['Unknown']
+        '''
         for i in response['location']['display_address']:
             response['address'].append(i)
             address = i
@@ -42,23 +57,34 @@ def create_context(response):
                 addr = i
             count += 1
         address = addr + ' ' + address
-                
-    except KeyError:
-        address = ''
-        response['address'] = ['Unknown']
+        '''
 
     alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
     count = 0
     # remove characters like '&' from address that might mess up google maps url
-    for l in address:
+    for l in faddress:
         if l not in alpha:
-            address.replace(l, '')
+            faddress.replace(l, '')
         count += 1
     # format venue name and address for google maps url
     fvenue = response['name'].replace(' ', '+')
-    address = address.replace(' ', '+')
-    address = address.replace(',', '')
-    google_url = "https://www.google.com/maps/embed/v1/place?key=" + maps + "&q=" + fvenue + ',' + address
+    faddress = faddress.replace(' ', '+')
+    response['fvenue'] = fvenue
+    try:
+        zip_code_s = faddress.split('+')[-1]
+        zip_code = int(faddress.split('+')[-1])
+        faddress = faddress.replace(zip_code_s, '')
+        faddress = faddress[:-1]
+    except:
+        pass
+    faddress = faddress.replace('&', '')
+    response['faddress'] = faddress
+    google_url = "https://www.google.com/maps/embed/v1/place?key=" + maps + "&q=" + fvenue + ',' + faddress
+    import requests
+    test_maps = requests.get(google_url)
+    if test_maps.status_code != 200:
+        response['error'] = True
+    response['debug'] = test_maps
     response['google_map'] = google_url
     return response
 
@@ -79,7 +105,25 @@ def is_open(venue, desired, date, time):
         venue['start'] = 'Open 24hrs'
         venue['stop'] = ''
         return True
-    biz_day = venue['hours'][0]['open'][weekday]
+    if len(venue['hours']) == 0:
+        venue['start'] = 'Open 24hrs'
+        venue['stop'] = ''
+        return True
+    if 'open' not in venue['hours'][0]:
+        venue['start'] = 'Open 24hrs'
+        venue['stop'] = ''
+        return True
+    if len(venue['hours'][0]['open']) == 0:
+        venue['start'] = 'Open 24hrs'
+        venue['stop'] = ''
+        return True
+    try:
+        biz_day = venue['hours'][0]['open'][weekday]
+    except:
+        venue['start'] = 'Open 24hrs'
+        venue['stop'] = ''
+        return True
+
     biz_open_s = biz_day['start']
     biz_close_s = biz_day['end']
     # convert from 24 hour to 12 hur

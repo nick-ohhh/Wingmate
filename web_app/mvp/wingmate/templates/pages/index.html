@@ -43,7 +43,6 @@ $(document).ready(function() {
 	</script>
 	<script>
 $(document).ready(function() {
-
 	
 	$('#location_input, #date_inuput, #time_input').change(function() {
 	if ($('#location_input, #date_inuput, #time_input').val().length != 0) {
@@ -534,12 +533,10 @@ $(document).ready(function() {
 		{% for star in half_star %}
 		<img src="https://i.ibb.co/mTWThVm/h-star.png" class="star">
 		{% endfor %}<br>
-		{% for line in address %}
-		{{ line }}<br>
-		{% endfor %}
+		{{ address }}<br>
 		<b>PHONE: </b>{{ phone }}<br>
 		<b>HOURS: </b>{{ start }} {% if stop %} - {% endif %}{{ stop }}<br>
-		<b>PRICE: {{ price }}<br>
+		<b>PRICE: </b>{{ price }}
 		</p>
 		</div>
 	
@@ -550,8 +547,15 @@ $(document).ready(function() {
 	</div>
 
 	<div class="col-xs-12 col-s-12 col-md-4 col-lg-4">
-		<iframe height="300" frameborder="0" style="border:0" src="{{ google_map }}" allowfullscreen>
+		{% if error %}
+		<div id="gmap">
+		<h4 style="text-align: center;">Sorry, google maps is not available for this location.</h4>
+			<img src="https://media1.giphy.com/media/6uGhT1O4sxpi8/giphy.gif" style="max-height: 50vh; height: auto;">
+		</div>
+		{% else %}
+		<iframe height="300" frameborder="0" style="border:0" src="{{ google_map }}" allowfullscreen id="iframe" name="g_map">
 		</iframe>
+		{% endif %}
 	</div>
 
 
@@ -560,14 +564,14 @@ $(document).ready(function() {
 </div>
 
 <!--- About -->
-<div class="container-fluid padding">
+<div class="container-fluid padding" id="about">
 <div class="row welcome text-center">
 	<div class="col-12">
 		<h1 class="display-4">About Wingmates</h1>
 	</div>
 	<hr>
 		<div class="col-12">
-	<p class="lead">Wingmate makes dating effortless and more rewarding by connecting people with incredible places where they can build long-lasting memories with others. We celebrate that dating is an adventure. And an exciting one. We aim to make the experience as seemless as possible.</p>	
+	<p class="lead">Wingmates makes dating effortless and more rewarding by connecting people with incredible places where they can build long-lasting memories with others. We celebrate that dating is an adventure. And an exciting one. We aim to make the experience as seamless as possible.</p>	
 		</div>
 		<div class="col-md-12 col-lg-12">
 			<img src="https://www.innsf.com/images/uploads/accommodations/Fort_Point.jpg" class="img-fluid">
@@ -598,7 +602,8 @@ $(document).ready(function() {
 			<img class="card-img-top" src="https://media.licdn.com/dms/image/C5603AQFq3tDXhQ6LUQ/profile-displayphoto-shrink_800_800/0?e=1576713600&v=beta&t=cdgV8HXGfA0cbzyBhvjCLqHSftvRNhrA3zCD6eB0I6E">
 			<div class="card-body">
 				<h4 class="card-title" id="hi">Jeremy Antonio</h4>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<h6 class="card-subtitle mb-2 text-muted">Back-End Engineer</h6>
+				<p style="font-weight:normal">Jeremy’s strengths shine in strategy, communication, and organization. He has a passion for the product building and problem-solving aspect of software engineering and the challenges they bring. Jeremy holds a bachelors in marketing from Saint Mary’s College of California. When not coding, he can be found at your local gym playing a pickup game or at the next big music festival.</p>
 				<a href="https://github.com/jembantonio" class="btn btn-outline-secondary">Github</a>
 				<a href="https://www.linkedin.com/in/jeremyantonio/" class="btn btn-outline-secondary">Linkedin</a>
 				<a href="https://twitter.com/jembantonio" class="btn btn-outline-secondary">Twitter</a>
@@ -611,7 +616,8 @@ $(document).ready(function() {
 			<img class="card-img-top" src="https://pbs.twimg.com/media/D7TGG6BUIAA4FBe?format=jpg&name=small">
 			<div class="card-body">
 				<h4 class="card-title">Rusell Molimock</h4>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<h6 class="card-subtitle mb-2 text-muted">Back-End Engineer</h6>
+				<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				<a href="https://github.com/Rmolimock" class="btn btn-outline-secondary">Github</a>
 				<a href="https://www.linkedin.com/in/russellmolimock/" class="btn btn-outline-secondary">Linkedin</a>
 				<a href="https://twitter.com/russellmolimock" class="btn btn-outline-secondary">Twitter</a>
@@ -624,7 +630,8 @@ $(document).ready(function() {
 			<img class="card-img-top" src="https://media.licdn.com/dms/image/C4D03AQGIkJl7aOz2cw/profile-displayphoto-shrink_800_800/0?e=1576713600&v=beta&t=6yA-hsIWm-xDOhRkq9FWB6q8R1s6i5Llj5zVtXH7qEc">
 			<div class="card-body">
 				<h4 class="card-title">Nick O'Keefe</h4>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<h6 class="card-subtitle mb-2 text-muted">Site Reliability Engineer</h6>
+				<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				<a href="https://github.com/nokeefe" class="btn btn-outline-secondary">Github</a>
 				<a href="https://www.linkedin.com/in/nbokeefe/" class="btn btn-outline-secondary">Linkedin</a>
 				<a href="https://twitter.com/TheKeefeChief" class="btn btn-outline-secondary">Twitter</a>
