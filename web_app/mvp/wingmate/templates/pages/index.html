@@ -538,6 +538,7 @@ $(document).ready(function() {
 		<b>HOURS: </b>{{ start }} {% if stop %} - {% endif %}{{ stop }}<br>
 		<b>PRICE: </b>{{ price }}
 		</p>
+
 		</div>
 	
 
@@ -553,9 +554,12 @@ $(document).ready(function() {
 			<img src="https://media1.giphy.com/media/6uGhT1O4sxpi8/giphy.gif" style="max-height: 50vh; height: auto;">
 		</div>
 		{% else %}
-		<iframe height="300" frameborder="0" style="border:0" src="{{ google_map }}" allowfullscreen id="iframe" name="g_map">
+		<iframe height="400px" width="400px" frameborder="0" style="border:0" src="{{ google_map }}" allowfullscreen id="iframe" name="g_map">
 		</iframe>
 		{% endif %}
+		<div class="col-sm-12 col-md-12 text-center"> 
+		<a href="{{ google_dir }}" target="_blank" class="btn btn-primary btn-lg btn-block active" role="button" aria-pressed="true">Directions</a>
+		</div>
 	</div>
 
 

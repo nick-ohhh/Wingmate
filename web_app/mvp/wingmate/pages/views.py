@@ -80,12 +80,14 @@ def create_context(response):
     faddress = faddress.replace('&', '')
     response['faddress'] = faddress
     google_url = "https://www.google.com/maps/embed/v1/place?key=" + maps + "&q=" + fvenue + ',' + faddress
+    google_dir = "https://www.google.com/maps?saddr=My+Location&daddr=" + faddress
     import requests
     test_maps = requests.get(google_url)
     if test_maps.status_code != 200:
         response['error'] = True
     response['debug'] = test_maps
     response['google_map'] = google_url
+    response['google_dir'] = google_dir
     return response
 
 def convert_user_dates(response, date, time):
