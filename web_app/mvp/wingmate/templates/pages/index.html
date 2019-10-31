@@ -11,6 +11,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
+	<link rel="icon" href="https://raw.githubusercontent.com/nokeefe/Wingmate/master/web_app/mvp/wingmate/templates/pages/img/logo%20transparent.png">
+
 	<script>
 $(document).ready(function() {
   $('a[href*="#"]').on('click', function(e) {
@@ -41,6 +43,8 @@ $(document).ready(function() {
 	</script>
 	<script>
 $(document).ready(function() {
+
+	
 	$('#location_input, #date_inuput, #time_input').change(function() {
 	if ($('#location_input, #date_inuput, #time_input').val().length != 0) {
 		$('#generate').removeAttr('disabled');
@@ -99,10 +103,10 @@ $(document).ready(function() {
 	}
 
 	.carousel-inner img {
-		  width: 100%;
-			    height: 100%;
+		height: 100%;
+		width: 100%;
 	}
-
+	
 	.carousel-control-next, .carousel-control-prev {
     	opacity: 0;
 	}
@@ -464,7 +468,7 @@ $(document).ready(function() {
 			<h3>You've found your match, let us handle the rest</h3>
 			<form>
 					<div class="form-location">
-					  <input type="location" class="form-control" id="exampleInputLocation location_input" aria-describedby="locationHelp" placeholder="Where do you want to go?">
+					  <input type="location" class="form-control" id="exampleInputLocation" id="location_input" aria-describedby="locationHelp" placeholder="Where do you want to go?">
 					  <div id="date_time_container">
 				  	    <div class="col">
 					      <label for="date_input">Date</label>
@@ -484,11 +488,11 @@ $(document).ready(function() {
 </div>
 
 <!--- Results -->
-<div class="container-fluid no-padding" id="results">
+<div class="container-fluid padding" id="results">
 <div class="row jumbotron" id="results_container">
-	<div id="left" class="col-sm-4">
+	<div class="col-xs-12 col-s-12 col-md-4 col-lg-4">
 
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" text-align:"middle">
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" class="col-xs-12 col-s-12 col-md-4 col-lg-4">
 	
 	<ol class="carousel-indicators">
 	    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -497,7 +501,7 @@ $(document).ready(function() {
 	  </ol>
 
 	
-	<div class="carousel-inner" role="listbox" style="max-height: 100%; max-width: 100%; !important;">
+	<div class="carousel-inner">
 	  <div class="carousel-item active">
 	    <img src="{{ image_url }}" class="venue_photos">
 	  </div>
@@ -520,8 +524,7 @@ $(document).ready(function() {
 	
 	</div>
 
-
-	<div class="col-sm-4" id="mid">
+	<div class="mid">
 		<div>
 		<p class="lead"> {{ name }}</p>
 		<p>
@@ -542,27 +545,31 @@ $(document).ready(function() {
 	
 
 		<div>
-	  	  <button type="button" class="btn btn-primary btn-lg" id="refresh">Not your thing?</button>
+	  	  <button type="button" class="btn btn-secondary btn-lg btn-block" id="refresh">Not your thing?</button>
 		</div>
 	</div>
 
-	<div class="col-sm-4" d="right">
+	<div class="col-xs-12 col-s-12 col-md-4 col-lg-4">
 		<iframe height="300" frameborder="0" style="border:0" src="{{ google_map }}" allowfullscreen>
 		</iframe>
 	</div>
 
 
 </div>
+<hr class="my-4">
 </div>
 
 <!--- About -->
 <div class="container-fluid padding">
-	<div class="row padding">
-		<div class="col-md-12 col-lg-6">
-			<h2 id="about">About Wingmates</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>	
+<div class="row welcome text-center">
+	<div class="col-12">
+		<h1 class="display-4">About Wingmates</h1>
+	</div>
+	<hr>
+		<div class="col-12">
+	<p class="lead">Wingmate makes dating effortless and more rewarding by connecting people with incredible places where they can build long-lasting memories with others. We celebrate that dating is an adventure. And an exciting one. We aim to make the experience as seemless as possible.</p>	
 		</div>
-		<div class="col-md-12 col-lg-6">
+		<div class="col-md-12 col-lg-12">
 			<img src="https://www.innsf.com/images/uploads/accommodations/Fort_Point.jpg" class="img-fluid">
 		</div>
 </div>
@@ -634,8 +641,12 @@ $(document).ready(function() {
 	<div class="col-12">
 		<h2>Connect</h2>
 	</div>
-	<div class="col-12 social padding">
+	<div class="col-12">
 		<a href="https://twitter.com/BestWingmates"><i class="fab fa-twitter"></i></a>
+	</div>
+
+	<div class="col-12">
+		<a href="https://github.com/nokeefe/Wingmate"><i class="fab fa-github"></i></a>
 	</div>
 </div>
 </div>
