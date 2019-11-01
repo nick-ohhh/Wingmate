@@ -183,6 +183,9 @@ def full_search(request, location, date, time):
         venue = requests.get(url = url, params = PARAMETERS, headers = HEADERS).json()
         if is_open(venue, desired, date, time):
             venue = create_context(venue)
+            if 'image_url' in venue and 'photos' in venue:
+                if venue['image_url'] == venue['photos'][0]:
+                    del venue['photos'][0]
             return render(request, 'pages/index.html', context=venue, content_type='string')
         else:
             count = 0
