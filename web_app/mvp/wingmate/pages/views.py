@@ -1,3 +1,7 @@
+'''This module uses information from route parameters
+   to request data from the Yelp and Google Maps APIs.
+   It then renders html templates with the appropriate
+   context dictionaries to be harnessed by jinja '''
 from django.shortcuts import render
 import requests
 from pages.keys import yelp, maps
@@ -6,17 +10,16 @@ from pages.keys import yelp, maps
 search = "https://api.yelp.com/v3/businesses/search"
 HEADERS = {'Authorization': 'bearer {}'.format(yelp)}
 
-# Create your views here.
+
+
 def index(request):
+    ''' This is the parent route. It simply renders index.html '''
     return render(request, 'pages/index.html')
 
-# user hits the button without a location input
-def bad_search(request):
-    er = {'name': "Please enter a location for your date.", 'image_url': "https://media1.giphy.com/media/6uGhT1O4sxpi8/giphy.gif"}
-    return render(request, 'pages/index.html', er)
 
-# update response dictionary so needed fields are top-level
 def create_context(response):
+    ''' format data and bring it to the top level of the dictionary
+    so it can be accessed by jinja on the front end '''
     if response['start'] == '0000':
         response['start'] = 'Open 24hrs'
     if response['stop'] == '0000':
@@ -49,16 +52,6 @@ def create_context(response):
             response['address'] = ['Unknown']
     else:
         response['address'] = ['Unknown']
-        '''
-        for i in response['location']['display_address']:
-            response['address'].append(i)
-            address = i
-            if count == 0:
-                addr = i
-            count += 1
-        address = addr + ' ' + address
-        '''
-
     alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
     count = 0
     # remove characters like '&' from address that might mess up google maps url
@@ -91,8 +84,8 @@ def create_context(response):
     return response
 
 def convert_user_dates(response, date, time):
+    ''' convert user input date/time into datetime object '''
     from datetime import datetime, timedelta
-    # convert user input date/time into datetime object
     time = datetime.strptime(time, "%H:%M")
     time = time.strftime("%I:%M %p")
     desired = date + ' ' + time
@@ -101,6 +94,7 @@ def convert_user_dates(response, date, time):
 
 
 def is_open(venue, desired, date, time):
+    ''' check if venue is open during correct hours '''
     from datetime import datetime, timedelta
     weekday = desired.weekday()
     if not 'hours' in venue:
@@ -125,7 +119,6 @@ def is_open(venue, desired, date, time):
         venue['start'] = 'Open 24hrs'
         venue['stop'] = ''
         return True
-
     biz_open_s = biz_day['start']
     biz_close_s = biz_day['end']
     # convert from 24 hour to 12 hur
@@ -159,6 +152,7 @@ def is_open(venue, desired, date, time):
 
 
 def is_open_late(o, c, time):
+    ''' check if venue is open until the next day '''
     hour = int(time.split(":")[0])
     if hour > 9:
         if 'AM' in c and 'PM' in o:
@@ -172,6 +166,7 @@ def is_open_late(o, c, time):
 
 
 def full_search(request, location, date, time):
+    ''' The primary search route called when user requests a date '''
     import requests
     PARAMETERS = {'limit': 50, 'radius': 8000, 'location': location, 'sort_by': 'rating'}
     search_response = requests.get(url = search, params = PARAMETERS, headers = HEADERS).json()
@@ -199,6 +194,7 @@ def full_search(request, location, date, time):
 
 
 def randomize(l_biz):
+    ''' randomize the list of venues recieved from yelp '''
     import random
     a = random.randint(0, len(l_biz) - 1)
     return l_biz[a]
