@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+sudo apt update
+sudo apt -y install python3-pip
+sudo pip3 install pipenv
+sudo pip3 install gunicorn
+sudo pipenv --python 3.6
+python3.6 -m pip install requests
+apt-get install nginx
+pipenv shell
