@@ -1,13 +1,20 @@
 # Wingmate
-### *"Commercial slogan here"*
----
-### Usage
+![Wingmates home page](https://raw.githubusercontent.com/nokeefe/Wingmates/master/Wingmates/img/wingmates_home.png)
+## *Stop planning. Start dating.*
 
+### Wingmates is a portfolio project developed over the course of two weeks by three first year Holberton School students. It was inspired by a discussion of the extensive research required to plan a successful date. Wingmates will aggregate data about high quality venues, interesting events, directions, rideshare prices, weather, available deals, and much more into a single page format that makes planning a date simpler than ever. Dating should be an exciting adventure, not a chore. With Wingmates, partners can get back to the experiences that matter.
 ---
-### Technologies
+## Usage
 
+### Please visit [Wingmates](http://wingmate.best/) to plan your date today!
+
+### Files contained within this repo stricly make Wingmates run and look the way it does. No warranty is expressed.
 ---
-### This project was created by:
+## Technologies
+
+### Technologies used to bring Wingmates to life include HTML/CSS, Bootstrap, Django, Google Cloud Platform for hosting, GUnicorn, JQuery, Jinja, Nginx, Python and making use of Yelps Fusion API along with Google Maps API for location visualization.
+---
+## This project was created by:
 
 * **Jeremy Antonio** - [GitHub: jembantonio](https://github.com/jembantonio/) | [LinkedIn: jeremyantonio](https://www.linkedin.com/in/jeremyantonio/)
 
