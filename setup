@@ -1,0 +1,8 @@
+#!/bin/bash
+curl -O https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+sudo apt-get update
+sudo apt-get install -y puppetserver
+sudo puppet module install puppet-git_resource --version 1.0.2
+puppet apply setup.pp
+sudo git clone https://github.com/nokeefe/Wingmate.git
