@@ -6,6 +6,8 @@
 ---
 ## Usage
 
+### For a follow-up to Wingmates service disruption, please check out our [postmortem](https://medium.com/@nokeefe1919/service-unavailability-incident-report-for-wingmates-794d0b5c5e66?sk=a7dd42dd2d3320c122543bc4505359e2)
+
 ### Please visit [Wingmates](http://wingmate.best/) to plan your date today!
 
 ### Files contained within this repo stricly make Wingmates run and look the way it does. No warranty is expressed.
