@@ -2,7 +2,7 @@
 ![Wingmates home page](https://raw.githubusercontent.com/nokeefe/Wingmate/master/img/wingmates_home.png)
 ## *Stop planning. Start dating.*
 
-### Wingmates is a portfolio project developed over the course of two weeks by three first year Holberton School students. It was inspired by a discussion of the extensive research required to plan a successful date. Wingmates will aggregate data about high quality venues, interesting events, directions, rideshare prices, weather, available deals, and much more into a single page format that makes planning a date simpler than ever. Dating should be an exciting adventure, not a chore. With Wingmates, partners can get back to the experiences that matter.
+### Wingmates is a portfolio project developed over the course of two weeks by three junior software engineers. It was inspired by a discussion of the extensive research required to plan a successful date. Wingmates will aggregate data about high quality venues, interesting events, directions, rideshare prices, weather, available deals, and much more into a single page format that makes planning a date simpler than ever. Dating should be an exciting adventure, not a chore. With Wingmates, partners can get back to the experiences that matter.
 ---
 ## Usage
 
