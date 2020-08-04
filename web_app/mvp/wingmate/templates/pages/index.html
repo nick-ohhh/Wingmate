@@ -11,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
-	<link rel="icon" href="https://raw.githubusercontent.com/nokeefe/Wingmate/master/web_app/mvp/wingmate/templates/pages/img/logo%20transparent.png">
+	<link rel="icon" href="https://raw.githubusercontent.com/nokeefe/Wingmate/master/web_app/mvp/wingmate/templates/pages/img/logotransparent.png">
 
 	<script>
 $(document).ready(function() {
@@ -25,12 +25,12 @@ $(document).ready(function() {
       'linear'
     )
   })
-  const context = {}; 
-    $(document).on('keypress',function(e) {
+  const context = {};
+   $(document).on('keypress',function(e) {
       if(e.which == 13) {
         alert("You pressed enter!\nWe're not sure how to handle that yet :)");
       }
-  });
+});
   $("#generate").click(function() {
     var loc = $('#exampleInputLocation').val();
     var dat = $('#date_input').val();
@@ -416,8 +416,8 @@ $(document).ready(function() {
 
 </style>
 	{% load static %}
-	<link href="{% static 'wingmate/main.css' %}" rel="stylesheet" type="text/css">
-	<link href="{% static 'wingmate/a.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static "main.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "a.css" %}" rel="stylesheet" type="text/css">
 
 
 
@@ -551,7 +551,6 @@ $(document).ready(function() {
 		{% if error %}
 		<div id="gmap">
 		<h4 style="text-align: center;">Sorry, google maps is not available for this location.</h4>
-			<img src="https://media1.giphy.com/media/6uGhT1O4sxpi8/giphy.gif" style="max-height: 50vh; height: auto;">
 		</div>
 		{% else %}
 		<iframe height="300px" width="300px" display="block" frameborder="0" style="border:0" src="{{ google_map }}" allowfullscreen id="iframe" name="g_map">

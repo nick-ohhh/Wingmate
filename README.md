@@ -14,12 +14,15 @@
 ---
 ## Technologies
 
-### Technologies used to bring Wingmates to life include HTML/CSS, Bootstrap, Django, Google Cloud Platform for hosting, GUnicorn, JQuery, Jinja, Nginx, Python and making use of Yelps Fusion API along with Google Maps API for location visualization.
+### Technologies used to bring Wingmates to life include HTML/CSS, Bootstrap, Django, Amazon Web Services for hosting, GUnicorn, JQuery, Jinja, Nginx, Python and making use of Yelps Fusion API along with Google Maps API for location visualization.
 ---
 ## This project was created by:
 
 * **Jeremy Antonio** - [GitHub: jembantonio](https://github.com/jembantonio/) | [LinkedIn: jeremyantonio](https://www.linkedin.com/in/jeremyantonio/)
+ * Jeremy wonderfully put together our Bootstrap template and configured Jinja to present Wingmates 
 
-* **Russell Molimock** - [GitHub: Rmolimock](https://github.com/Rmolimock/) | [LinkedIn: russellmolimock](https://www.linkedin.com/in/russellmolimock/)
+* **Russell Molimock** - [GitHub: Rmolimock](https://github.com/Rmolimock/) | [LinkedIn: russellmolimock](https://www.linkedin.com/in/russellmolimock/)i
+ * Russell was a core contributer to the Python and Django codebase; the meat and bones of Wingmates.
 
 * **Nick O'Keefe** - [GitHub: nokeefe](https://github.com/nokeefe/) | [LinkedIn: nbokeefe](https://www.linkedin.com/in/nbokeefe/)
+ * Nick created and manages the networking configurations to help keep Wingmates online, along with contributing work to the Google Maps API configuration.
