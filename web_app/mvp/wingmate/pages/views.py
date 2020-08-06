@@ -4,7 +4,11 @@
    context dictionaries to be harnessed by jinja '''
 from django.shortcuts import render
 import requests
-from pages.keys import yelp, maps
+#from pages.keys import yelp, maps
+with open('/etc/google_key.txt') as f:
+    maps = f.read().strip()
+with open('/etc/yelp_key.txt') as f:
+    yelp = f.read().strip()
 
 
 search = "https://api.yelp.com/v3/businesses/search"

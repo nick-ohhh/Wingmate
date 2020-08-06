@@ -20,10 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'umg(+s7p)@93kf-tf3+r6y_q%q0rm9y1mjr-ska83z6m2o*bv5'
+with open('/etc/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['wingmate.best', '127.0.0.1']
 
@@ -120,9 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATICFILE_DIRS = [
-os.path.join(BASE_DIR, 'static'),
-'/wingmate/static'
+    os.path.join(BASE_DIR, 'static'),
+    '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static'
 ]
 
-STATIC_ROOT = '/home/vagrant/wingmaterepo/Wingmate/web_app/mvp/wingmate/static'
-STATIC_URL = '/static/'
+STATIC_ROOT = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static/'
+STATIC_URL = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static/'
