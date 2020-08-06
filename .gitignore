@@ -1,0 +1,7 @@
+*.vscode
+*.pyc
+package-lock.json
+bin
+.installed.cfg
+lib
+lib64
