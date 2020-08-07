@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	{% load static %}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Wingmates</title>
@@ -128,8 +129,8 @@ $(document).ready(function() {
 	  justify-content: flex-start;
 	  transform: translateY(-20vh);
 	}
-	  position: absolute;
-	  top: 40%;
+	  /* position: absolute;
+	  top: 40%; */
 
 	.carousel-caption h1 {
 		  font-size: 500%;
@@ -157,7 +158,7 @@ $(document).ready(function() {
 	}
 
 	.social a {
-		  font-sizeem;
+		  /* font-sizeem; */
 		    padding: 3em;
 	}
 
@@ -228,8 +229,8 @@ $(document).ready(function() {
 	  width: auto;
 	}
 
-	#image_container {
-	}
+	/* #image_container {
+	} */
 
 	#results_container {
 	  display: flex;
@@ -312,8 +313,8 @@ $(document).ready(function() {
 	  #time_input {
             width: 4rem;
 	  }
-	  #w_logo {
-	  }
+	  /* #w_logo {
+	  } */
 	  .carousel-caption {
 	    top: 45%;
 	  }
@@ -339,7 +340,7 @@ $(document).ready(function() {
 	    top: 40%;
 	  }
           .carousel-caption h1 {
-            nt-size: 250%;
+            font-size: 250%;
 	  }
           .carousel-caption h3 {
             font-size: 110%;
@@ -417,12 +418,16 @@ $(document).ready(function() {
 
 </style>
 	{% load static %}
-	<link href="{% static "main.css" %}" rel="stylesheet" type="text/css">
-	<link href="{% static "a.css" %}" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="{% static '/favicon/favicon.ico' %}"/>
+	<link href="{% static 'main.css' %}" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'a.css' %}" rel="stylesheet" type="text/css"/>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+	<link rel="manifest" href="/site.webmanifest">
 
-
-
-	<link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+	<!-- <link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css"> -->
 
 </head>
 <body>
@@ -603,7 +608,7 @@ $(document).ready(function() {
 	
 	<div class="col-md-4">
 		<div class="card">
-			<img class="card-img-top" src="https://media.licdn.com/dms/image/C5603AQFq3tDXhQ6LUQ/profile-displayphoto-shrink_800_800/0?e=1576713600&v=beta&t=cdgV8HXGfA0cbzyBhvjCLqHSftvRNhrA3zCD6eB0I6E">
+			<img class="card-img-top" src="https://avatars3.githubusercontent.com/u/42565594?s=460&u=73bfab56aae4c9310e81cabcee5d4911c8f31520&v=4">
 			<div class="card-body">
 				<h4 class="card-title" id="hi">Jeremy Antonio</h4>
 				<h6 class="card-subtitle mb-2 text-muted">Back-End Engineer</h6>
@@ -617,7 +622,7 @@ $(document).ready(function() {
 
 	<div class="col-md-4">
 		<div class="card">
-			<img class="card-img-top" src="https://uccafcc960eac05d01ab829928a0.previews.dropboxusercontent.com/p/thumb/AAmTqPsW-lmBuc2k_1bs4wBqGnf2xQfypZcrWloiV9gJXz77ciua_0Fao7INc8KzsF1iinw8hdGgzpwgWWfRJwzv1KyGiKmRxyOkN1GQleLIUwr28-6270U3ZEyaiL9IOWVVPOGH3oWz_-vgwoS5Pec-ZgYNu4Okpl78M2Fc60JS4qu7b5q7JulquDwifJsUoaFxX_3eanRNmBODa1Pka-sGdYj6gexKpb7Ahljt8fe6arrnHVP3cUvjz9FjfoNPHK-uPq1fzINrkG2Tkzl9iiQdKbHjM8zAYKPpFnDjQwFs9KO6oGd0QiQT0QQVmzh1LTGTTD1Q1x5bAMaAVrIFhoWv9F7gWWENErQ2ss1srD6NfaBJ3yheQM57OT8P7DBKvnxm-ub0-EPpGomJA1n0PN593zuzDjZ5zP_-HZzG5svyxA/p.jpeg?fv_content=true&size_mode=5">
+			<img class="card-img-top" src="https://avatars3.githubusercontent.com/u/38747720?s=460&u=632718d6b50e558c52c3cf659f3b8ec4ecea702d&v=4">
 			<div class="card-body">
 				<h4 class="card-title">Rusell Molimock</h4>
 				<h6 class="card-subtitle mb-2 text-muted">Back-End Engineer</h6>
@@ -631,14 +636,14 @@ $(document).ready(function() {
 
 	<div class="col-md-4">
 		<div class="card">
-			<img class="card-img-top" src="https://media.licdn.com/dms/image/C4D03AQGIkJl7aOz2cw/profile-displayphoto-shrink_800_800/0?e=1576713600&v=beta&t=6yA-hsIWm-xDOhRkq9FWB6q8R1s6i5Llj5zVtXH7qEc">
+			<img class="card-img-top" src="https://avatars2.githubusercontent.com/u/6313690?s=460&u=43ddea655434bcf27e65e76baf780572c5e81f59&v=4">
 			<div class="card-body">
 				<h4 class="card-title">Nick O'Keefe</h4>
 				<h6 class="card-subtitle mb-2 text-muted">Site Reliability Engineer</h6>
 				<p class="lead">Originating from the East Coast, Nick has transitioned from Civil Engineering to Software Engineering after discovering a passion in helping or entertaining people, digitally. Enjoying most outdoor activities, he typically is pumping iron when not playing video games or coding.</p>
 				<a href="https://github.com/nokeefe" class="btn btn-outline-secondary">Github</a>
 				<a href="https://www.linkedin.com/in/nbokeefe/" class="btn btn-outline-secondary">Linkedin</a>
-				<a href="https://twitter.com/TheKeefeChief" class="btn btn-outline-secondary">Twitter</a>
+				<!-- <a href="https://twitter.com/TheKeefeChief" class="btn btn-outline-secondary">Twitter</a> -->
 			</div>
 		</div>
 	</div>

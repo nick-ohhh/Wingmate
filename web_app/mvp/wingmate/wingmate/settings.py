@@ -26,6 +26,8 @@ with open('/etc/secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+APPEND_SLASH = False
+
 ALLOWED_HOSTS = ['wingmate.best', '127.0.0.1']
 
 
@@ -120,10 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATICFILE_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static'
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+#     # '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static',
+# ]
 
-STATIC_ROOT = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static/'
+# STATIC_ROOT = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static/'
 STATIC_URL = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static/'
