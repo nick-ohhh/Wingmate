@@ -178,7 +178,7 @@ def full_search(request, location, date, time):
         list_businesses, desired = convert_user_dates(search_response, date, time)
         venue = randomize(list_businesses)
         v_id = venue['id']
-        url = "http://api.yelp.com/v3/businesses/" + v_id
+        url = "https://api.yelp.com/v3/businesses/" + v_id
         venue = requests.get(url = url, params = PARAMETERS, headers = HEADERS).json()
         if is_open(venue, desired, date, time):
             venue = create_context(venue)
