@@ -2,6 +2,7 @@
    to request data from the Yelp and Google Maps APIs.
    It then renders html templates with the appropriate
    context dictionaries to be harnessed by jinja '''
+from templates import pages
 from django.shortcuts import render
 import requests
 #from pages.keys import yelp, maps
@@ -69,7 +70,7 @@ def create_context(response):
     response['fvenue'] = fvenue
     try:
         zip_code_s = faddress.split('+')[-1]
-        zip_code = int(faddress.split('+')[-1])
+        # zip_code = int(faddress.split('+')[-1])
         faddress = faddress.replace(zip_code_s, '')
         faddress = faddress[:-1]
     except:
@@ -202,5 +203,3 @@ def randomize(l_biz):
     import random
     a = random.randint(0, len(l_biz) - 1)
     return l_biz[a]
-
-

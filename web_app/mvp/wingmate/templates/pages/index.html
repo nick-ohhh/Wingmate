@@ -1,25 +1,26 @@
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wingmates</title>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script> -->
+<link rel="icon" href="https://raw.githubusercontent.com/nokeefe/Wingmate/master/web_app/mvp/wingmate/templates/pages/img/logotransparent.png">
+
+<!--Header-->
 <head>
 	{% load static %}
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Wingmates</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
-	<link rel="icon" href="https://raw.githubusercontent.com/nokeefe/Wingmate/master/web_app/mvp/wingmate/templates/pages/img/logotransparent.png">
-
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<script>
 $(document).ready(function() {
   $('a[href*="#"]').on('click', function(e) {
     e.preventDefault()
-    $('html, body').animate(
+    $('css, body').animate(
       {
         scrollTop: $($(this).attr('href')).offset().top,
       },
@@ -37,7 +38,7 @@ $(document).ready(function() {
     var loc = $('#exampleInputLocation').val();
     var dat = $('#date_input').val();
     var tim = $('#time_input').val();
-    window.location.replace("http://wingmate.best/search/" + loc + '/' + dat + '/' + tim);
+    window.location.replace("//wingmate.best/search/" + loc + '/' + dat + '/' + tim);
     var display = "True";
     localStorage.setItem("display", display);
   });
@@ -61,10 +62,10 @@ $(document).ready(function() {
   var host = window.location.host;
   var display = localStorage.getItem("display");	   
   if (display == "True") {
-    if(url.indexOf('http://' + host + '/search') != -1) {
+    if(url.indexOf('https://' + host + '/search') != -1) {
       $('#results').removeClass('no_display');
       $(function(){
-        $('html, body').animate({
+        $('css, body').animate({
             scrollTop: $('#results').offset().top
       }, 0);
       return false;
@@ -85,7 +86,7 @@ $(document).ready(function() {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-	html, body {
+	css, body {
 	  height: 100%;
 	  width: 100%;
 	  font-family: 'Poppins', sans-serif;
@@ -250,7 +251,8 @@ $(document).ready(function() {
 	  width: 25vw;
 	  max-width: 25vw;
 	}
-	#mid {
+	#mid .lead {
+	  font-size: x-large;
 	  width: 25vw;
 	  max-width: 25vw;
 	  padding: 0px;
@@ -418,13 +420,14 @@ $(document).ready(function() {
 
 </style>
 	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="shortcut icon" href="{% static '/favicon/favicon.ico' %}"/>
-	<link href="{% static 'main.css' %}" rel="stylesheet" type="text/css"/>
-	<link href="{% static 'a.css' %}" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+	<!-- <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css"/> -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-	<link rel="manifest" href="/site.webmanifest">
+	<!-- <link rel="manifest" href="/site.webmanifest"> -->
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
 	<!-- <link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css"> -->
@@ -442,7 +445,7 @@ $(document).ready(function() {
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="http://wingmate.best/">Home</a>
+				<a class="nav-link" href="https://wingmate.best/">Home</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#about">About</a>
@@ -456,6 +459,8 @@ $(document).ready(function() {
 </div>
 
 <!--- Generator -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <div id="slides" class="carousel slide" data-ride="carousel">
 <ul class="carousel-indicators">
 	<li data-target="#slides" data-slide-to="0" class="active"></li>
@@ -531,7 +536,7 @@ $(document).ready(function() {
 
 	<div class="mid">
 		<div>
-		<p class="lead"> {{ name }}</p>
+		<p class="lead"> <big>{{ name }}</big></p>
 		<p>
 		{% for star in stars %}
 		<img src="https://i.ibb.co/L1V79wb/star.png" class="star">
@@ -643,7 +648,6 @@ $(document).ready(function() {
 				<p class="lead">Originating from the East Coast, Nick has transitioned from Civil Engineering to Software Engineering after discovering a passion in helping or entertaining people, digitally. Enjoying most outdoor activities, he typically is pumping iron when not playing video games or coding.</p>
 				<a href="https://github.com/nokeefe" class="btn btn-outline-secondary">Github</a>
 				<a href="https://www.linkedin.com/in/nbokeefe/" class="btn btn-outline-secondary">Linkedin</a>
-				<!-- <a href="https://twitter.com/TheKeefeChief" class="btn btn-outline-secondary">Twitter</a> -->
 			</div>
 		</div>
 	</div>
@@ -684,4 +688,3 @@ $(document).ready(function() {
 
 </body>
 </html>
-
