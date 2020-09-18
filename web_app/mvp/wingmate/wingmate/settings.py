@@ -132,10 +132,11 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    '/wingmate/static',
     # '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static',
 ]
 
-PROJECT_ROOT = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/'
+STATIC_ROOT = '/home/ubuntu/Wingmate/web_app/mvp/wingmate/static'
 # STATIC_ROOT = os.path.join(os.path.abspath(os.path.join(PROJECT_ROOT, 'wingmate', 'static')), '')
 # STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 STATIC_URL = '/static/'
